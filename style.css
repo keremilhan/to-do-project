@@ -1,7 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Alef&family=Carter+One&display=swap');
+
+
+* {
+    font-family: 'Carter One', cursive;
+}
+
+#main-header {
+    background-color: #88AAA9;
+}
+
+#btn-custom {
+    background-color: #88AAA9;
+    color: white;
+    outline: none;
+    border: none;
+}
+
+#btn-custom:hover {
+    background-color: #88AAA9;
+}
+
+
+
 .delete {
     cursor: pointer;
 }
 
 .done {
     cursor: pointer;
+}
+
+li {
+    font-family: 'Alef', sans-serif;
+}
+
+.heading {
+    background-color: #88AAA9;
+    color: white;
+    padding: 1rem;
+}
+
+.bg-darkpurple {
+    background-color: #404247;
+}
+
+#todo-list li, #done-list li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

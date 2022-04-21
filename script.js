@@ -2,6 +2,7 @@ let form = document.getElementById('addForm');
 let list = document.getElementById('todo-list');
 let doneList = document.getElementById('done-list');
 let filter = document.getElementById('filter');
+let body = document.querySelector('body');
 
 
 form.addEventListener('submit', addTodo);
@@ -30,7 +31,7 @@ function addTodo(e) {
 
     let li = document.createElement('li');
 
-    li.className = 'list-group-item d-flex justify-content-between align-items-center fs-3';
+    li.className = 'list-group-item fs-3';
 
     li.appendChild(document.createTextNode(newTodo));
 
@@ -46,8 +47,11 @@ function addTodo(e) {
 
     li.appendChild(span);
 
+    
+
     if(newTodo.length && char_count(newTodo, " ") !== newTodo.length){
         list.appendChild(li);
+        form.reset();
     }else{
         alert('Please don"t leave the input empty');
     }
@@ -57,7 +61,10 @@ function addTodo(e) {
 function removeandDoneTodo(e) {
     if(e.target.classList.contains('delete')){
         let li = e.target.parentElement.parentElement;
-        list.removeChild(li);
+        if(confirm('Are you sure to delete this task?')){
+            list.removeChild(li);
+        }
+        
     }else if(e.target.classList.contains('done')){
         let li = e.target.parentElement.parentElement;
         let span = e.target.parentElement;
@@ -73,7 +80,9 @@ function removeandDoneTodo(e) {
 function removeTodo(e){
     if(e.target.classList.contains('delete')){
         let li = e.target.parentElement.parentElement;
-        doneList.removeChild(li);
+        if(confirm('Are you sure to delete this task?')){
+            doneList.removeChild(li);
+        }
     }
 }
 
@@ -81,17 +90,15 @@ function filterTodo(e){
     // convert text to lowercase
     let text = e.target.value.toLowerCase();
     // Get list items
-    let todos = list.getElementsByTagName('li');
+    let todos = body.getElementsByTagName('li');
 
     // CONVERT TO AN ARRAY
     Array.from(todos).forEach(function(todo){
         let todoName = todo.firstChild.textContent;
         if(todoName.toLowerCase().indexOf(text) != -1){
-            todo.style.display = 'flex';
-            console.log('+')
+            todo.style.display = '';
         }else {
             todo.style.display = 'none';
-            console.log('-')
         }
     })
 }
