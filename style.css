@@ -17,17 +17,31 @@
 }
 
 #btn-custom:hover {
-    background-color: #88AAA9;
+    background-color: #198754;;
 }
 
+#btn-custom:focus {
+    outline: 0;
+    box-shadow: none;
+}
 
 
 .delete {
     cursor: pointer;
+    color: #88AAA9;
+}
+
+.delete:hover {
+    color: #DC3545;
 }
 
 .done {
     cursor: pointer;
+    color: #88AAA9;
+}
+
+.done:hover{
+    color: #198754;
 }
 
 li {
@@ -48,4 +62,82 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+#confirmation {
+    position: absolute;
+    width: 250px;
+    height: 100px;
+    top: 0;
+    left: 45%;
+    background: #404247;
+    color: white;
+    font-size: 1.4rem;
+}
+
+#buttons {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+#buttons button{
+    color: white;
+    background-color: #88AAA9;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    margin: 0.2rem 1rem;
+}
+
+#buttons button.yes:hover {
+    background-color: #198754;
+}
+
+#buttons button.no:hover {
+    background-color: #DC3545;
+}
+
+
+.ok {
+    color: white;
+    background-color: #88AAA9;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    margin: 0.2rem 1rem;
+}
+
+#warning {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 100px;
+    top: 0;
+    left: 40%;
+    background: #404247;
+    color: white;
+    font-size: 1.4rem;
+}
+
+#new-todo{
+    border: none;
+}
+
+#filter {
+    border: none;
+}
+
+#new-todo:focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+#filter:focus{
+    outline: 0;
+    box-shadow: none;
 }

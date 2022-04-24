@@ -39,8 +39,8 @@ function addTodo(e) {
     let deleteIcon = document.createElement('i');
     let doneIcon = document.createElement('i');
 
-    deleteIcon.className = 'fa-solid fa-square-xmark delete text-danger me-2 fs-2';
-    doneIcon.className = 'fa-solid fa-square-check done text-success fs-2'
+    deleteIcon.className = 'fa-solid fa-square-xmark delete me-2 fs-2';
+    doneIcon.className = 'fa-solid fa-square-check done fs-2'
 
     span.appendChild(deleteIcon);
     span.appendChild(doneIcon);
@@ -53,7 +53,42 @@ function addTodo(e) {
         list.appendChild(li);
         form.reset();
     }else{
-        alert('Please don"t leave the input empty');
+        // alert('Please don"t leave the input empty');
+        let toastDiv = document.createElement('div');
+        toastDiv.className = 'toast';
+        toastDiv.setAttribute('role', 'alert');
+        toastDiv.setAttribute('aria-live', 'assertive');
+        toastDiv.setAttribute('id','warning');
+        toastDiv.setAttribute('aria-atomic', 'true');
+
+        let toastBody = document.createElement('div');
+        toastDiv.className = 'toast-body text-center rounded-3';
+        toastBody.textContent= "Please don't leave the input empty";
+
+        let buttonDOM = document.createElement('div')
+        buttonDOM.className = 'button'
+
+        let buttonOk = document.createElement('button');
+        buttonOk.className = 'ok mt-2';
+        buttonOk.textContent = 'OK';
+        
+        toastDiv.appendChild(toastBody);
+        buttonDOM.appendChild(buttonOk);
+        toastDiv.appendChild(buttonDOM);  
+
+        let body = document.body;
+        body.appendChild(toastDiv);
+
+        let toast = new bootstrap.Toast(toastDiv);
+        toast.show();
+        
+        toastDiv.addEventListener('click', warningFunction);
+
+        function warningFunction(e) {
+            if(e.target.classList.contains('ok')) {
+                toast.hide();
+            }  
+        }    
     }
     
 }
@@ -61,10 +96,52 @@ function addTodo(e) {
 function removeandDoneTodo(e) {
     if(e.target.classList.contains('delete')){
         let li = e.target.parentElement.parentElement;
-        if(confirm('Are you sure to delete this task?')){
-            list.removeChild(li);
-        }
+
+        let toastDiv = document.createElement('div');
+        toastDiv.className = 'toast';
+        toastDiv.setAttribute('role', 'alert');
+        toastDiv.setAttribute('aria-live', 'assertive');
+        toastDiv.setAttribute('id','confirmation');
+        toastDiv.setAttribute('aria-atomic', 'true');
+
+        let toastBody = document.createElement('div');
+        toastDiv.className = 'toast-body text-center rounded-3';
+        toastBody.textContent= 'Are you sure?';
+
+        let buttonsDOM = document.createElement('div');
+        buttonsDOM.className = 'buttons';
+        buttonsDOM.setAttribute('id', 'buttons');
+
+        let buttonYes = document.createElement('button');
+        buttonYes.className = 'yes mt-2';
+        buttonYes.textContent = 'Yes';
+
+        let buttonNo = document.createElement('button');
+        buttonNo.className = 'no mt-2';
+        buttonNo.textContent = 'No';
+
+        toastDiv.appendChild(toastBody);
+        toastDiv.appendChild(buttonsDOM);
+        buttonsDOM.appendChild(buttonYes);
+        buttonsDOM.appendChild(buttonNo);
         
+        let body = document.body;
+        body.appendChild(toastDiv);
+
+        let toast = new bootstrap.Toast(toastDiv);
+        toast.show();
+
+        toastDiv.addEventListener('click', confirmationFunction);
+
+        function confirmationFunction(e) {
+            if(e.target.classList.contains('yes')){
+                list.removeChild(li);
+                toast.hide();
+            }else{
+                toast.hide();
+            }
+        }
+    
     }else if(e.target.classList.contains('done')){
         let li = e.target.parentElement.parentElement;
         let span = e.target.parentElement;
@@ -80,9 +157,54 @@ function removeandDoneTodo(e) {
 function removeTodo(e){
     if(e.target.classList.contains('delete')){
         let li = e.target.parentElement.parentElement;
-        if(confirm('Are you sure to delete this task?')){
-            doneList.removeChild(li);
+        let toastDiv = document.createElement('div');
+        toastDiv.className = 'toast';
+        toastDiv.setAttribute('role', 'alert');
+        toastDiv.setAttribute('aria-live', 'assertive');
+        toastDiv.setAttribute('id','confirmation');
+        toastDiv.setAttribute('aria-atomic', 'true');
+
+        let toastBody = document.createElement('div');
+        toastDiv.className = 'toast-body text-center rounded-3';
+        toastBody.textContent= 'Are you sure?';
+
+        let buttonsDOM = document.createElement('div');
+        buttonsDOM.className = 'buttons';
+        buttonsDOM.setAttribute('id', 'buttons');
+
+        let buttonYes = document.createElement('button');
+        buttonYes.className = 'yes mt-2';
+        buttonYes.textContent = 'Yes';
+
+        let buttonNo = document.createElement('button');
+        buttonNo.className = 'no mt-2';
+        buttonNo.textContent = 'No';
+
+        toastDiv.appendChild(toastBody);
+        toastDiv.appendChild(buttonsDOM);
+        buttonsDOM.appendChild(buttonYes);
+        buttonsDOM.appendChild(buttonNo);
+        
+        let body = document.body;
+        body.appendChild(toastDiv);
+
+        let toast = new bootstrap.Toast(toastDiv);
+        toast.show();
+
+        console.log(toast);
+
+        toastDiv.addEventListener('click', confirmationFunction);
+
+        function confirmationFunction(e) {
+            if(e.target.classList.contains('yes')){
+                doneList.removeChild(li); 
+                toast.hide();
+            }else{
+                toast.hide();
+            }
         }
+
+
     }
 }
 
@@ -102,3 +224,4 @@ function filterTodo(e){
         }
     })
 }
+
