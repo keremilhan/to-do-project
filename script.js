@@ -86,8 +86,9 @@ function addTodo(e) {
 
         function warningFunction(e) {
             if(e.target.classList.contains('ok')) {
-                toast.hide();
-            }  
+                toastDiv.remove();
+            } else 
+                toastDiv.remove(); 
         }    
     }
     
@@ -128,17 +129,14 @@ function removeandDoneTodo(e) {
         let body = document.body;
         body.appendChild(toastDiv);
 
-        let toast = new bootstrap.Toast(toastDiv);
-        toast.show();
-
         toastDiv.addEventListener('click', confirmationFunction);
 
         function confirmationFunction(e) {
             if(e.target.classList.contains('yes')){
                 list.removeChild(li);
-                toast.hide();
+                toastDiv.remove();
             }else{
-                toast.hide();
+                toastDiv.remove();
             }
         }
     
@@ -198,9 +196,9 @@ function removeTodo(e){
         function confirmationFunction(e) {
             if(e.target.classList.contains('yes')){
                 doneList.removeChild(li); 
-                toast.hide();
+                toastDiv.remove();
             }else{
-                toast.hide();
+                toastDiv.remove();
             }
         }
 

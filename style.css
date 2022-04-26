@@ -141,3 +141,32 @@ li {
     outline: 0;
     box-shadow: none;
 }
+
+
+@media only screen and (max-width: 1000px) {
+    #todo-list li, #done-list li {
+        flex-direction: column;
+        flex-wrap: wrap;
+        flex-grow: 1;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+    }
+
+    #text-align-center {
+        text-align: center;
+    }
+
+    #warning{
+        left: 10%;
+    }
+
+    #confirmation{
+        left: 30%;
+    }
+
+    #done-list-container{
+        margin-top: 5rem;
+    }
+    
+}
