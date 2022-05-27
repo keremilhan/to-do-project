@@ -1,4 +1,4 @@
-# to-do-project
+# Todo Project
 
 I used Bootstrap and Vanilla JavaScript in this Project. I also made the design responsive.
 
