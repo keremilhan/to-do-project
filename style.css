@@ -169,4 +169,13 @@ li {
         margin-top: 5rem;
     }
     
+    #btn-container{
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
+    #btn-custom {
+        width: 150px;
+    }
 }
